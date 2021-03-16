@@ -4,21 +4,31 @@ using UnityEngine;
 
 public class Interactions : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool interactWithObject;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Interact"))
+        Interact();
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Interactable")
         {
-            if (col.gameObject.tag == ("Interactable"))
-            {
-                Debug.Log("Touched a thing");
-            }
+            interactWithObject = true;
+        }
+        else
+        {
+            interactWithObject = false;
+        }
+    }
+
+    void Interact()
+    {
+        if (Input.GetButtonDown("Interact") && interactWithObject == true)
+        {
+            Debug.Log("Interacted with object");
         }
     }
 }

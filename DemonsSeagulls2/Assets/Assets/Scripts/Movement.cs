@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     public bool facingRight = false;
     public float moveOnX;
     public bool grounded;
+    public bool interactWithObject;
+    public bool interactWithObjectFlight;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,8 @@ public class Movement : MonoBehaviour
     void Update()
     {
         playerMovement();
+        Interact();
+        WeaponSwitching();
     }
     void playerMovement()
     {
@@ -51,11 +55,66 @@ public class Movement : MonoBehaviour
         {
             grounded = true;
         }
+        if (col.gameObject.tag == "Interactable")
+        {
+            interactWithObject = true;
+        }
+        else
+        {
+            interactWithObject = false;
+        }
+        if (col.gameObject.tag == "InteractableFlight")
+        {
+            interactWithObjectFlight = true;
+            grounded = true;
+        }
+        else
+        {
+            interactWithObjectFlight = false;
+        }
     }
     void Jump()
     {
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * speedJump);
-        grounded = false;
         Debug.Log("bruh");
+        if (interactWithObjectFlight == true)
+        {
+            grounded = true;
+        }
+        else
+        {
+            grounded = false;
+        }
+    }
+    void WeaponSwitching()
+    {
+        if (Input.GetButtonDown("Switch1"))
+        {
+            Debug.Log("Switched to Manual");
+            GetComponent<ShootingRifle>().enabled = true;
+            GetComponent<ShootingAuto>().enabled = false;
+            GetComponent<ShootingMelee>().enabled = false;
+        }
+        if (Input.GetButtonDown("Switch2"))
+        {
+            Debug.Log("Switched to Auto");
+            GetComponent<ShootingRifle>().enabled = false;
+            GetComponent<ShootingAuto>().enabled = true;
+            GetComponent<ShootingMelee>().enabled = false;
+        }
+        if (Input.GetButtonDown("Switch3"))
+        {
+            Debug.Log("Switched to Melee");
+            GetComponent<ShootingRifle>().enabled = false;
+            GetComponent<ShootingAuto>().enabled = false;
+            GetComponent<ShootingMelee>().enabled = true;
+        }
+    }
+    void Interact()
+    {
+        if (Input.GetButtonDown("Interact") && interactWithObject == true)
+        {
+            Debug.Log("Interacted with object");
+        }
     }
 }

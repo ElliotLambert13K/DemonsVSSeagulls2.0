@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - ground
   - Interactable
+  - InteractableFlight
+  - InteractableUnlock1
+  - InteractableUnlock2
   layers:
   - Default
   - TransparentFX
