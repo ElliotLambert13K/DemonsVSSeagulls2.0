@@ -15,7 +15,7 @@ public class Interactions : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            if (GetComponent.collider<> == ("Interactable"))
+            if (col.gameObject.tag == ("Interactable"))
             {
                 Debug.Log("Touched a thing");
             }
