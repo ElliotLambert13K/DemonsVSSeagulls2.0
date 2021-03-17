@@ -194,6 +194,10 @@ MonoBehaviour:
   grounded: 0
   interactWithObject: 0
   interactWithObjectFlight: 0
+  interactWithObjectWeaponAuto: 0
+  interactWithObjectWeaponMelee: 0
+  weaponTwoActive: 0
+  weaponThreeActive: 0
 --- !u!61 &407524912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1331,7 +1335,7 @@ GameObject:
   - component: {fileID: 1131483815}
   m_Layer: 8
   m_Name: WeaponTemp2
-  m_TagString: Interactable
+  m_TagString: InteractableWeaponMelee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1547,7 +1551,7 @@ GameObject:
   - component: {fileID: 1578683726}
   m_Layer: 8
   m_Name: WeaponTemp1
-  m_TagString: Interactable
+  m_TagString: InteractableWeaponAuto
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

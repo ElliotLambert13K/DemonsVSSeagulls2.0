@@ -9,8 +9,8 @@ TagManager:
   - ground
   - Interactable
   - InteractableFlight
-  - InteractableUnlock1
-  - InteractableUnlock2
+  - InteractableWeaponAuto
+  - InteractableWeaponMelee
   layers:
   - Default
   - TransparentFX

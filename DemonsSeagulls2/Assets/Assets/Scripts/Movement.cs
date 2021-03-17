@@ -11,6 +11,10 @@ public class Movement : MonoBehaviour
     public bool grounded;
     public bool interactWithObject;
     public bool interactWithObjectFlight;
+    public bool interactWithObjectWeaponAuto;
+    public bool interactWithObjectWeaponMelee;
+    public bool weaponTwoActive = false;
+    public bool weaponThreeActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +76,24 @@ public class Movement : MonoBehaviour
         {
             interactWithObjectFlight = false;
         }
+        if (col.gameObject.tag == "InteractableWeaponAuto")
+        {
+            interactWithObjectWeaponAuto = true;
+            grounded = true;
+        }
+        else
+        {
+            interactWithObjectWeaponAuto = false;
+        }
+        if (col.gameObject.tag == "InteractableWeaponMelee")
+        {
+            interactWithObjectWeaponMelee = true;
+            grounded = true;
+        }
+        else
+        {
+            interactWithObjectWeaponMelee = false;
+        }
     }
     void Jump()
     {
@@ -95,14 +117,14 @@ public class Movement : MonoBehaviour
             GetComponent<ShootingAuto>().enabled = false;
             GetComponent<ShootingMelee>().enabled = false;
         }
-        if (Input.GetButtonDown("Switch2"))
+        if (Input.GetButtonDown("Switch2") && weaponTwoActive == true)
         {
             Debug.Log("Switched to Auto");
             GetComponent<ShootingRifle>().enabled = false;
             GetComponent<ShootingAuto>().enabled = true;
             GetComponent<ShootingMelee>().enabled = false;
         }
-        if (Input.GetButtonDown("Switch3"))
+        if (Input.GetButtonDown("Switch3") && weaponThreeActive == true)
         {
             Debug.Log("Switched to Melee");
             GetComponent<ShootingRifle>().enabled = false;
@@ -115,6 +137,16 @@ public class Movement : MonoBehaviour
         if (Input.GetButtonDown("Interact") && interactWithObject == true)
         {
             Debug.Log("Interacted with object");
+        }
+        else if (Input.GetButtonDown("Interact") && interactWithObjectWeaponAuto == true)
+        {
+            Debug.Log("Interacted with object auto");
+            weaponTwoActive = true;
+        }
+        else if (Input.GetButtonDown("Interact") && interactWithObjectWeaponMelee == true)
+        {
+            Debug.Log("Interacted with object melee");
+            weaponThreeActive = true;
         }
     }
 }
