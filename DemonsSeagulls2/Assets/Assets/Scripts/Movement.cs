@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     public bool interactWithObjectWeaponMelee;
     public bool weaponTwoActive = false;
     public bool weaponThreeActive = false;
+    public float addGravity = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,10 @@ public class Movement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && grounded == true)
         {
             Jump();
+        }
+        if (Input.GetButtonDown("Jump") && grounded == false)
+        {
+            Glide();
         }
         if (moveOnX < 0.0f && facingRight == false)
         {
@@ -148,5 +153,9 @@ public class Movement : MonoBehaviour
             Debug.Log("Interacted with object melee");
             weaponThreeActive = true;
         }
+    }
+    void Glide()
+    {
+        GetComponent<Rigidbody2D>().gravityScale -= addGravity;
     }
 }
