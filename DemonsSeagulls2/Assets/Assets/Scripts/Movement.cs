@@ -15,7 +15,9 @@ public class Movement : MonoBehaviour
     public bool interactWithObjectWeaponMelee;
     public bool weaponTwoActive = false;
     public bool weaponThreeActive = false;
-    public float addGravity = 0.5f;
+    public float lowGravity = 0.5f;
+    public float normalGravity = 1.0f;
+    public bool jumpFinished = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +35,21 @@ public class Movement : MonoBehaviour
     {
 
         moveOnX = Input.GetAxis("Horizontal");
-        if (Input.GetButtonDown("Jump") && grounded == true)
+        if (Input.GetButtonDown("Jump"))
         {
-            Jump();
+            if (grounded == true)
+            {
+                Jump();
+            }
+            else if (jumpFinished == true && grounded == false)
+            {
+                Glide();
+                jumpFinished = false;
+            }
         }
-        if (Input.GetButtonDown("Jump") && grounded == false)
+        if (Input.GetButtonUp("Jump"))
         {
-            Glide();
+            jumpFinished = true;
         }
         if (moveOnX < 0.0f && facingRight == false)
         {
@@ -63,6 +73,7 @@ public class Movement : MonoBehaviour
         if (col.gameObject.tag == "ground")
         {
             grounded = true;
+            GetComponent<Rigidbody2D>().gravityScale = normalGravity;
         }
         if (col.gameObject.tag == "Interactable")
         {
@@ -156,6 +167,6 @@ public class Movement : MonoBehaviour
     }
     void Glide()
     {
-        GetComponent<Rigidbody2D>().gravityScale -= addGravity;
+        GetComponent<Rigidbody2D>().gravityScale = lowGravity;
     }
 }
