@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
     public float lowGravity = 0.5f;
     public float normalGravity = 1.0f;
     public bool jumpFinished = true;
+    public LayerMask ignoreEnemyBarrier;
     // Start is called before the first frame update
     void Start()
     {

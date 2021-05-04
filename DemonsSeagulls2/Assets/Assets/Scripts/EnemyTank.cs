@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class EnemyStandard : MonoBehaviour
+public class EnemyTank : MonoBehaviour
 {
     public int EnemySpeed;
     public int XMoveDirection;
@@ -13,15 +13,13 @@ public class EnemyStandard : MonoBehaviour
     public bool facingRight = true;
     public int enemyhp1 = 50;
     public LayerMask detectionMask;
-    public float Jeff;
 
     // Update is called once per frame
     void Update()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(XMoveDirection, 0), detectionMask);
-        Debug.DrawRay(transform.position, new Vector2(XMoveDirection, 0));
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(XMoveDirection, 0) * EnemySpeed;
-        if (hit.distance < Jeff)
+        if (hit.distance < 2.5f)
         {
             Flip();
             FlipEnemy();
