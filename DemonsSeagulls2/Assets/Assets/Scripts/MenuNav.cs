@@ -16,4 +16,13 @@ public class MenuNav : MonoBehaviour
     {
         
     }
+
+    public void EnterGame()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
