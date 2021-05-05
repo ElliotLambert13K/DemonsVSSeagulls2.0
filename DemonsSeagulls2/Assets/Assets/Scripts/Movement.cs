@@ -19,10 +19,14 @@ public class Movement : MonoBehaviour
     public float normalGravity = 1.0f;
     public bool jumpFinished = true;
     public LayerMask ignoreEnemyBarrier;
+    public GameObject gunManual;
+    public GameObject gunAuto;
+    public GameObject weaponMelee;
     // Start is called before the first frame update
     void Start()
     {
-
+        gunAuto.SetActive(false);
+        weaponMelee.SetActive(false);
     }
 
     // Update is called once per frame
@@ -133,6 +137,9 @@ public class Movement : MonoBehaviour
             GetComponent<ShootingRifle>().enabled = true;
             GetComponent<ShootingAuto>().enabled = false;
             GetComponent<ShootingMelee>().enabled = false;
+            gunManual.SetActive(true);
+            gunAuto.SetActive(false);
+            weaponMelee.SetActive(false);
         }
         if (Input.GetButtonDown("Switch2") && weaponTwoActive == true)
         {
@@ -140,6 +147,9 @@ public class Movement : MonoBehaviour
             GetComponent<ShootingRifle>().enabled = false;
             GetComponent<ShootingAuto>().enabled = true;
             GetComponent<ShootingMelee>().enabled = false;
+            gunManual.SetActive(false);
+            gunAuto.SetActive(true);
+            weaponMelee.SetActive(false);
         }
         if (Input.GetButtonDown("Switch3") && weaponThreeActive == true)
         {
@@ -147,6 +157,9 @@ public class Movement : MonoBehaviour
             GetComponent<ShootingRifle>().enabled = false;
             GetComponent<ShootingAuto>().enabled = false;
             GetComponent<ShootingMelee>().enabled = true;
+            gunManual.SetActive(false);
+            gunAuto.SetActive(false);
+            weaponMelee.SetActive(true);
         }
     }
     void Interact()
