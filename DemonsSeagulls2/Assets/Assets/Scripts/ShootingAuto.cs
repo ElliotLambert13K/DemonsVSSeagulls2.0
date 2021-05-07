@@ -15,7 +15,7 @@ public class ShootingAuto : MonoBehaviour
 
     public Transform BulletTrailPrefab;
 
-    //public int enemyhealthGoblin = 50;
+    public int enemyhealthGoblin = 50;
 
     // Start is called before the first frame update
     void Awake()
@@ -68,15 +68,15 @@ public class ShootingAuto : MonoBehaviour
         {
             Debug.DrawLine(firePointPosition, hit.point, Color.red);
             Debug.Log("We hit " + hit.collider.name + " and did " + Damage + " damage");
-            //if (hit.collider.tag == ("enemy"))
-            //{
-                //enemyhealthGoblin = enemyhealthGoblin - 10;
-                // if (enemyhealthGoblin < 1)
-                //{
-                // Destroy(hit.collider.gameObject);
-                //enemyhealthGoblin = enemyhealthGoblin + 50;
-                //Debug.Log("Enemy Killed");
-                //}
+            if (hit.collider.tag == ("Enemy"))
+            {
+                enemyhealthGoblin = enemyhealthGoblin - 10;
+                if (enemyhealthGoblin < 1)
+                {
+                    Destroy(hit.collider.gameObject);
+                    enemyhealthGoblin = enemyhealthGoblin + 50;
+                    Debug.Log("Enemy Killed");
+                }
                 //hit.collider.gameObject.GetComponent<EnemyMove>().enemyhp1 -= 10;
                 //if (hit.collider.gameObject.GetComponent<EnemyMove>().enemyhp1 < 1)
                 //{
@@ -90,7 +90,7 @@ public class ShootingAuto : MonoBehaviour
                 //{
                     //Destroy(hit.collider.gameObject);
                 //}
-            //}
+            }
         }
     }
 }
