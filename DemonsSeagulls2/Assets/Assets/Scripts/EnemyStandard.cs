@@ -10,7 +10,7 @@ public class EnemyStandard : MonoBehaviour
     public int XMoveDirection;
     public int hp = 10;
     public GameObject Health;
-    public bool facingRight = true;
+    public bool facingRight = false;
     public int enemyhp1 = 50;
     public LayerMask detectionMask;
     public float Jeff;
